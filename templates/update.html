@@ -1,0 +1,81 @@
+{%extends 'base.html'%}
+
+{%block title%}Add Employee{%endblock%}
+
+{%block content%}
+
+
+<div class="card mt-5" style="margin-right:450px; width: 60rem; margin-left:450px">
+  <div class="container  text-danger">
+    <center>
+      <h2 class="mt-2">Edit Employee Details</h2>
+    </center>
+    <hr>
+  </div>
+
+  <div class="card-body ">
+    <form action="" method="POST" enctype="multipart/form-data">
+      {%csrf_token%}
+      <div class="row">
+        <div class="col-sm-6">
+          <label style="font-size: large;">Full Name </label>
+          <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" type="text" name="name" required value="{{prod.name}}" placeholder="Name">
+          <label style="font-size: large;">Highest Qualification</label>
+          <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" type="text" name="edu" required value="{{prod.edu}}"
+            placeholder="Highest Education with stream name">
+          <label style="font-size: large;">Programming Languages</label>
+          <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" type="text" name="prol" required value="{{prod.prol}}"
+            placeholder="Programming Languages">
+          <label style="font-size: large;">Age</label>
+          <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" type="number" name="age" required value="{{prod.age}}" placeholder="Age">
+          {%if prod.image%}
+          <img src="{{prod.image.url}}" alt="Not Found" height="60px" width="60px">
+          {%endif%}
+          <label style="font-size: large;">Person Image</label>
+          <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" name="image" id="formFileLg" type="file">
+        </div>
+        <div class="col-sm-6">
+          <label style="font-size: large;">Gender</label>
+          <select style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" name="gender" value="{{prod.gender}}" aria-label="Default select example" required
+            placeholder="Select Gender">
+            <option value="male" name="male">Male</option>
+            <option value="female" name="female">Female</option>
+            <option value="others" name="others">Others</option>
+          </select>
+          <label style="font-size: large;">Salary</label>
+          <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" type="number" name="exsalary" required value="{{prod.exsalary}}"
+            placeholder="  Expected Salary">
+          <label style="font-size: large;">Department Name</label>
+          <select style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" name="deptname" aria-label="Default select example" placeholder="">
+            <option value="{{prod.deptname}}">{{prod.deptname}}</option>
+            {% for x in dept %}
+            <option value="{{x.name}}" name="deptname" class="form-control">{{x.name}}</option>
+            {% endfor %}
+          </select>
+          <label style="font-size: large;">About</label>
+          <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" type="text" name="about" required value="{{prod.about}}"
+            placeholder="About Employee">
+
+        </div>
+      </div>
+
+
+
+      <button type="submit" style="font-size: larger;" class="btn btn-danger mt-3">Submit</button>
+      <a href="/" style="font-size: larger; "class="btn btn-primary mt-3">Back</a>
+    </form>
+  </div>
+</div>
+</div>
+
+
+{%endblock%}

@@ -1,0 +1,72 @@
+{%extends 'base.html'%}
+{%block title%}Add New Employee{%endblock%}
+{%block content%}
+<div class="card mt-5  " style="margin-right:450px; width: 60rem; margin-left:450px">
+  <div class="container  text-danger">
+    <center>
+      <h2 class="mt-2">Add Employee Details</h2>
+    </center>
+    <hr>
+  </div>
+  <div class="card-body ">
+    <form action="submit/" method="POST" enctype="multipart/form-data">
+      {%csrf_token%}
+      <div class="row">
+        <div class="col-sm-6"> <label style="font-size: large;"> Enter Full Name </label>
+          <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" type="text" name="name" required value="" placeholder="Name">
+          <label style="font-size: large;">Qualification</label>
+          <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" type="text" name="edu" required value=""
+            placeholder="Highest Education with stream name">
+          <label style="font-size: large;">Programming languages Know</label>
+          <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" type="text" name="prol" required value="" placeholder="Programming Languages">
+          <label style="font-size: large;">Age</label>
+          <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+            class="form-control mb-3" type="number" name="age" required value="" placeholder="Age">
+        </div>
+
+        <div class="col-sm-6">
+          
+      <label style="font-size: large;"> Select Gender</label>
+      <select style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+        class="form-control mb-3" name="gender" aria-label="Default select example" required
+        placeholder="Select Gender">
+        <option value="male" name="male">Male</option>
+        <option value="female" name="female">Female</option>
+        <option value="others" name="others">Others</option>
+      </select>
+      <label style="font-size: large;"> Salary</label>
+      <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+        class="form-control mb-3" type="number" name="exsalary" required value="" placeholder="  Expected Salary">
+      <label style="font-size: large;">Select Working Department</label>
+      <select style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+        class="form-control mb-3" name="deptname" aria-label="Default select example" required
+        placeholder="Select Department Id">
+        <option value="">Select Department</option>
+        {% for x in dept %}
+        <option value="{{x.name}}" name="deptname" class="form-control">{{x.name}}</option>
+        {% endfor %}
+      </select>
+      <label style="font-size: large;">About self</label>
+      <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+        class="form-control mb-3" type="text" name="about" required value="" placeholder="About Employee">
+        </div>
+      </div>
+
+
+
+      <label style="font-size: large;">Choose Image</label>
+      <input style="height:55px; background-color:#A3E4D7; border-radius: 10px; border-color: black;"
+        class="form-control mb-3" name="image" required id="formFileLg" type="file">
+      <button type="submit"  style="font-size: larger;" class="btn btn-danger mt-3">Submit</button>
+      <a href="/" style="font-size: larger;" class="btn btn-primary mt-3">Back</a>
+    </form>
+  </div>
+</div>
+</div>
+
+
+
+{%endblock%}

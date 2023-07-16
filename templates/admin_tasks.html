@@ -1,0 +1,92 @@
+{%extends 'base.html'%}
+
+{%block title%}Manage Employee{%endblock%}
+
+{%block content%}
+
+<nav class="navbar navbar-expand-lg " style="background-color:#00a1ff;">
+    <div class="container-fluid">
+        <a class="navbar-brand text-dark" href="/"><b><h1>Employee Management</h1></b></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-1 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active mt-2" aria-current="page" href="add/"><b><h5>Add New Employee</h5></b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active mt-2" aria-current="page" href="register/"><b><h5>Add New Admin</h5></b></a>
+                </li>
+
+
+            </ul>
+            <ul class="nav-item mb-1">
+                <form class=" d-flex" role="search">
+                    <input class="form-control me-4" name="search" type="search" placeholder="Search Employee By Name"
+                        aria-label="Search">
+                    <button class="btn btn-dark" type="submit">Search</button>
+                </form>
+            </ul>
+
+
+            <ul class="nav-item dropdown  mb-1 mb-lg-0">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <b style="color:brown;">
+                        Hello {{user.username}}</b>
+                </a>
+                <ul class="dropdown-menu ">
+                    <li><a class="dropdown-item" href="logout/">Logout</a></li>
+                </ul>
+            </ul>
+            <pre>  </pre>
+            <img src="images/admin.png" class="rounded-circle" height="45px" width="45px" alt="">
+
+            <a class="nav-link active" aria-current="page"></a>
+
+
+
+        </div>
+
+    </div>
+</nav>
+
+
+    <div class="container">
+
+        <div class="row mt-5">
+            {% for x in emp %}
+            <div class="col-sm-6">
+                <div class="card  text-bg-success mb-3 text-dark">
+                    <h5  style="background-color:#00a1ff;" class="card-header">Name: {{x.name}} (<small>{{x.gender | capfirst}}</small>)</h5>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="container">
+                                <center>
+                                    <img src="{{x.image.url}}" width="180px" height="180px"
+                                        class="rounded float-start mt-2 text-center" alt="nature">
+                                        <h6 style="margin-top: 10px;">Profile Image</h6>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="card-body ">
+                                <h5 class="card-title">Highest Education: {{x.edu}}</h5>
+                                <p class="card-text">
+                                <h6>Salary: {{x.exsalary}}Rs</h6>
+                                <h6>Age:{{x.age}} Years</h6>
+                                <h6>Programming Languages: {{x.prol}}</h6>
+                                </p>
+                                <a href="{%url 'edit' x.id%}" class="btn btn-info">Edit</a>
+                                <a href="delete/{{x.id}}" class="btn btn-danger">Delete</a>
+                                <a href="view/{{x.id}}" class="btn btn-secondary">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+
+
+
+    </div>
+    {%endblock%}
